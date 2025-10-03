@@ -1,5 +1,7 @@
 package com.exadel.bookService.controller;
 
+import com.exadel.bookService.dto.LoanRequest;
+import com.exadel.bookService.dto.ReturnRequest;
 import com.exadel.bookService.model.Loan;
 import com.exadel.bookService.service.LoanService;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +20,21 @@ public class LoanController {
 
     // Criar empréstimo
     @PostMapping
-    public Loan borrowBook(@RequestParam Long bookId,
-                           @RequestParam Long userId,
-                           @RequestParam(defaultValue = "14") int loanDays) {
-        return loanService.borrowBook(bookId, userId, loanDays);
+    public Loan borrowBook(@RequestBody LoanRequest request) {
+        return loanService.borrowBook(
+                request.getBookId(),
+                request.getUserId(),
+                request.getLoanDays()
+        );
     }
 
     // Devolver livro
-    @PutMapping("/{loanId}/return")
-    public Loan returnBook(@PathVariable Long loanId) {
-        return loanService.returnBook(loanId);
+
+    @PutMapping("/return")
+    public Loan returnBook(@RequestBody ReturnRequest request) {
+        return loanService.returnBook(request.getLoanId());
     }
+
 
     // Listar todos os empréstimos de um usuário
     @GetMapping("/user/{userId}")
