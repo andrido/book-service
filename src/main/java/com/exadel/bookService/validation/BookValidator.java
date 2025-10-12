@@ -28,12 +28,16 @@ public class BookValidator {
         }
     }
 
-    public void validateForUpdate(Book existing, Book updates) {
-        if (updates.getIsbn() != null && !updates.getIsbn().isBlank()) {
-            if (!updates.getIsbn().equals(existing.getIsbn()) && repository.existsByIsbn(updates.getIsbn())) {
-                throw new BookValidationException("ISBN already exists");
-            }
+    public void validateForUpdate(Book book) {
+        // Só valida se os campos enviados não forem nulos ou em branco
+        if (book.getTitle() != null && book.getTitle().isBlank()) {
+            throw new BookValidationException("Title cannot be blank");
+        }
+        if (book.getIsbn() != null && book.getIsbn().isBlank()) {
+            throw new BookValidationException("ISBN cannot be blank");
         }
     }
+
+
 
 }

@@ -3,6 +3,8 @@ package com.exadel.bookService.controller;
 import com.exadel.bookService.exception.BookNotFoundException;
 import com.exadel.bookService.model.Book;
 import com.exadel.bookService.service.BookService;
+import com.exadel.bookService.service.IBookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +13,10 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookService service;
+    private final IBookService service;
 
-    public BookController(BookService service) {
+    @Autowired
+    public BookController(IBookService service) {
         this.service = service;
     }
 
@@ -24,8 +27,7 @@ public class BookController {
 
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {
-        return service.getBookById(id)
-                .orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
+        return service.getBookById(id);
     }
 
     @PostMapping

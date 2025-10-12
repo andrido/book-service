@@ -1,5 +1,6 @@
 package com.exadel.bookService.service;
 
+import com.exadel.bookService.dto.LoanRequest;
 import com.exadel.bookService.exception.BookNotFoundException;
 import com.exadel.bookService.exception.LoanNotFoundException;
 import com.exadel.bookService.model.Book;
@@ -18,16 +19,17 @@ public class LoanService {
     private final LoanRepository loanRepository;
     private final BookService bookService;
 
+
     public LoanService(LoanRepository loanRepository, BookService bookService) {
         this.loanRepository = loanRepository;
         this.bookService = bookService;
     }
 
     @Transactional
-    public Loan borrowBook(Long bookId, Long userId) {
-        // busca o livro
-        Book book = bookService.getBookById(bookId)
-                .orElseThrow(() -> new BookNotFoundException("Book not found"));
+    public Loan borrowBook( LoanRequest loanRequest) {
+        Long bookId = loanRequest.getBookId();
+        Long userId = loanRequest.getUserId();
+        Book book = bookService.getBookById(bookId);
 
         int updated = bookService.decrementIfAvailable(bookId);
         if (updated == 0) {

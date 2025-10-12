@@ -23,8 +23,8 @@ public class ReservationService {
 
     @Transactional
     public Reservation reserveBook(Long bookId, Long userId) {
-        Book book = bookService.getBookById(bookId)
-                .orElseThrow(() -> new BookNotFoundException("Book not found"));
+        Book book = bookService.getBookById(bookId);
+
 
         // Se livro disponível, talvez não precise reservar, só emprestar
         if (book.getQuantity() > 0) {

@@ -25,10 +25,7 @@ public class LoanController {
 
     @PostMapping
     public Loan borrowBook(@RequestBody @Valid LoanRequest request) {
-        return loanService.borrowBook(
-                request.getBookId(),
-                request.getUserId()
-        );
+        return loanService.borrowBook(request);
     }
 
 
