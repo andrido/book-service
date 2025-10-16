@@ -2,6 +2,7 @@ package com.exadel.bookService.controller;
 
 import com.exadel.bookService.dto.ReservationRequest;
 import com.exadel.bookService.model.Reservation;
+import com.exadel.bookService.service.IReservationService;
 import com.exadel.bookService.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,9 +12,9 @@ import java.util.List;
 @RequestMapping("/reservations")
 public class ReservationController {
 
-    private final ReservationService reservationService;
+    private final IReservationService reservationService;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(IReservationService reservationService) {
         this.reservationService = reservationService;
     }
 

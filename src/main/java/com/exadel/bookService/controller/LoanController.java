@@ -3,6 +3,7 @@ package com.exadel.bookService.controller;
 import com.exadel.bookService.dto.LoanRequest;
 import com.exadel.bookService.dto.ReturnRequest;
 import com.exadel.bookService.model.Loan;
+import com.exadel.bookService.service.ILoanService;
 import com.exadel.bookService.service.LoanService;
 import jakarta.validation.Valid;
 import org.springframework.validation.annotation.Validated;
@@ -16,11 +17,11 @@ import java.util.List;
 
 public class LoanController {
 
-    private final LoanService loanService;
+    private final ILoanService loanService;
 
-    public LoanController(LoanService loanService) {
+    public LoanController(ILoanService loanService) {
         this.loanService = loanService;
-    }
+ }
 
 
     @PostMapping

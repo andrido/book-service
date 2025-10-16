@@ -29,7 +29,7 @@ public class BookService implements IBookService {
     @Override
     public Book getBookById(Long id) {
         if (id == null) {
-            throw new IllegalArgumentException("Id cannot be null");
+            throw new IllegalArgumentException("ID cannot be null");
         }
         return repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
@@ -38,7 +38,7 @@ public class BookService implements IBookService {
 
     @Override
     public Book createBook(Book book) {
-        validator.validate(book);  // validação isolada
+        validator.validate(book);
         return repository.save(book);
     }
 
@@ -105,4 +105,6 @@ public class BookService implements IBookService {
 
         repository.save(book);
     }
+
+
 }
