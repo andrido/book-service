@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="85c531ec-b184-4bc4-bead-0105551acc5f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/all_book_service_tests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/exception/ReservationNotAllowedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/exadel/bookService/service/BookServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/exception/ReservationNotAllowedException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/com/exadel/bookService/LibraryServiceApplicationTests.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/com/exadel/bookService/service/BookServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/ReservationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/service/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/service/BookService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/service/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/service/ReservationService.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Exception" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="loan-and-reservation-methods" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/3.5.3/spring-data-commons-3.5.3.jar!/org/springframework/data/repository/ListCrudRepository.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/3.5.3/spring-data-jpa-3.5.3.jar!/org/springframework/data/jpa/repository/JpaRepository.class" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="32kOuEmAFeeb0IDU1hnsNbMPsr0" />
+  <component name="ProjectViewState">
+    <option name="compactDirectories" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.BookServiceTest.createBook_bookValidationException_throwsException.executor": "Run",
+    "JUnit.BookServiceTest.createBook_savesBook.executor": "Debug",
+    "JUnit.BookServiceTest.executor": "Run",
+    "JUnit.BookServiceTest.getBookById_existingId_returnsBook.executor": "Run",
+    "JUnit.BookServiceTest.testFindBookById.executor": "Run",
+    "JUnit.LibraryServiceApplicationTests.executor": "Run",
+    "JUnit.all book-service tests.executor": "Coverage",
+    "JUnit.java in book-service.executor": "Coverage",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BookServiceApplication.executor": "Run",
+    "Spring Boot.LibraryServiceApplication.executor": "Run",
+    "git-widget-placeholder": "loan-and-reservation-methods",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/projetosEmJava/book-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.exadel.bookService.exception" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.exadel.bookService.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.java in book-service">
+    <configuration name="java in book-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="book-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="22" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="book-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.exadel.bookService.BookServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.all book-service tests" />
+      <item itemvalue="JUnit.java in book-service" />
+      <item itemvalue="Spring Boot.BookServiceApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.java in book-service" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="85c531ec-b184-4bc4-bead-0105551acc5f" name="Changes" comment="" />
+      <created>1757961323564</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757961323564</updated>
+      <workItem from="1757961324650" duration="1854000" />
+      <workItem from="1758038023114" duration="10925000" />
+      <workItem from="1758206829203" duration="17769000" />
+      <workItem from="1758688540669" duration="13637000" />
+      <workItem from="1759328261642" duration="7820000" />
+      <workItem from="1759497096254" duration="2424000" />
+      <workItem from="1759513592472" duration="2146000" />
+      <workItem from="1759517892125" duration="21000" />
+      <workItem from="1759517932864" duration="50000" />
+      <workItem from="1759517988187" duration="165000" />
+      <workItem from="1759518162108" duration="178000" />
+      <workItem from="1759518345251" duration="3163000" />
+      <workItem from="1759769786127" duration="13692000" />
+      <workItem from="1759947947773" duration="2869000" />
+      <workItem from="1760230801198" duration="23507000" />
+      <workItem from="1760503039016" duration="1949000" />
+      <workItem from="1760547793150" duration="6920000" />
+      <workItem from="1760591711848" duration="9343000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/exadel/bookService/controller/BookController.java</url>
+          <line>23</line>
+          <properties class="com.exadel.bookService.controller.BookController" method="getAllBooks">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/ReservationService.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.mockito.internal.handler.MockHandlerImpl" memberName="mockSettings" />
+        <PinnedItemInfo parentTag="org.mockito.internal.handler.InvocationNotifierHandler" memberName="invocationListeners" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/book_service$all_book_service_tests.ic" NAME="all book-service tests Coverage Results" MODIFIED="1760643134614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.exadel.bookService.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/book_service$java_in_book_service.ic" NAME="java in book-service Coverage Results" MODIFIED="1760646788917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>
