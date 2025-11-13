@@ -1,17 +1,14 @@
 package com.exadel.bookService.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 
 
 @Entity
-@Getter @Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Book {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,16 +29,6 @@ public class Book {
 
 
 
-    @Override
-    public String toString() {
-        return "Book [" +
-                "id=" + id
-                + ", title=" + title + ","
-                + " author=" + author + ","
-                + " isbn=" + isbn + ","
-                + " available=" + available
-                + ", quantity=" + quantity + "" +
-                "]";
-    }
+
 }
 

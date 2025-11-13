@@ -2,20 +2,18 @@ package com.exadel.bookService.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reservation {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
@@ -23,8 +21,9 @@ public class Reservation {
     private Book book;
 
     private Long userId;
+    private String userName;
+    private String userEmail;
+
     private LocalDateTime reservedAt;
     private boolean fulfilled;
-
-
 }

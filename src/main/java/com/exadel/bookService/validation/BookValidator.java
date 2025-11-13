@@ -29,7 +29,6 @@ public class BookValidator {
     }
 
     public void validateForUpdate(Book book) {
-        // Só valida se os campos enviados não forem nulos ou em branco
         if (book.getTitle() != null && book.getTitle().isBlank()) {
             throw new BookValidationException("Title cannot be blank");
         }

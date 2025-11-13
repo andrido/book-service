@@ -4,19 +4,17 @@ import com.exadel.bookService.dto.ReservationRequest;
 import com.exadel.bookService.model.Reservation;
 import com.exadel.bookService.service.IReservationService;
 import com.exadel.bookService.service.ReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/reservations")
+@RequiredArgsConstructor
 public class ReservationController {
 
     private final IReservationService reservationService;
-
-    public ReservationController(IReservationService reservationService) {
-        this.reservationService = reservationService;
-    }
 
     @PostMapping
     public Reservation reserveBook(@RequestBody ReservationRequest request) {
