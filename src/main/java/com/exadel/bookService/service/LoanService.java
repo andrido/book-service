@@ -4,6 +4,7 @@ import com.exadel.bookService.dto.LoanRequest;
 import com.exadel.bookService.dto.LoanEvent;
 import com.exadel.bookService.exception.BookNotFoundException;
 import com.exadel.bookService.exception.LoanNotFoundException;
+import com.exadel.bookService.kafka.LoanEventProducer;
 import com.exadel.bookService.model.Loan;
 import com.exadel.bookService.model.LoanStatus;
 import com.exadel.bookService.repository.LoanRepository;
@@ -20,12 +21,14 @@ public class LoanService implements ILoanService {
     private final LoanRepository loanRepository;
     private final IBookService bookService;
     private final KafkaTemplate<String, LoanEvent> kafkaTemplate; // 🔄 agora usa o DTO
+    private final LoanEventProducer loanEventProducer;
 
     public LoanService(LoanRepository loanRepository, IBookService bookService,
-                       KafkaTemplate<String, LoanEvent> kafkaTemplate) {
+                       KafkaTemplate<String, LoanEvent> kafkaTemplate, LoanEventProducer loanEventProducer) {
         this.loanRepository = loanRepository;
         this.bookService = bookService;
         this.kafkaTemplate = kafkaTemplate;
+        this.loanEventProducer = loanEventProducer;
     }
 
     @Transactional
@@ -80,7 +83,7 @@ public class LoanService implements ILoanService {
 
         Loan savedLoan = loanRepository.save(loan);
 
-        // 📤 Publica o evento de devolução também como DTO
+
         LoanEvent event = new LoanEvent(
                 savedLoan.getId(),
                 savedLoan.getUserId(),
@@ -89,7 +92,7 @@ public class LoanService implements ILoanService {
                 savedLoan.getStatus().name()
         );
 
-        kafkaTemplate.send("loan-events", event);
+        loanEventProducer.sendLoanEvent(event);
 
         return savedLoan;
     }

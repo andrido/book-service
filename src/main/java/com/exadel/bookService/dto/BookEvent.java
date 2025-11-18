@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class BookEvent {
     private Long bookId;
     private String title;
-    private String status; // AVAILABLE, UNAVAILABLE, etc
+    private BookStatus status;
     private Long userId;
     private String userName;
     private String userEmail;

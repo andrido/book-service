@@ -5,28 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85c531ec-b184-4bc4-bead-0105551acc5f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/BookServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/BookServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/controller/ReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/model/Loan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/model/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/model/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/config/KafkaTopicConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/dto/BookEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/dto/BookEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/kafka/BookEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/kafka/BookEventProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/kafka/LoanEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/kafka/LoanEventProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/BookService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/LoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/service/ReservationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/validation/BookValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/exadel/bookService/validation/BookValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/controller/BookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/controller/LoanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/controller/LoanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/controller/ReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/controller/ReservationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/model/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/model/Book.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/model/Loan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/model/Loan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/model/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/model/Reservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/exadel/bookService/validation/BookValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/exadel/bookService/validation/BookValidator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/exadel/bookService/LibraryServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/exadel/bookService/service/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/exadel/bookService/service/BookServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/exadel/bookService/service/LoanServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/exadel/bookService/service/LoanServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +85,7 @@
     "git-widget-placeholder": "loan-and-reservation-methods",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/projetosEmJava/library-service/book-service",
+    "last_opened_file_path": "F:/projetosEmJava/library-service",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -193,6 +182,7 @@
       <workItem from="1761539145109" duration="4000" />
       <workItem from="1761616953572" duration="8331000" />
       <workItem from="1761682062216" duration="14000" />
+      <workItem from="1763427437140" duration="16000" />
     </task>
     <servers />
   </component>

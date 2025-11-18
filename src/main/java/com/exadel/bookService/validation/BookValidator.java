@@ -4,6 +4,7 @@ import com.exadel.bookService.exception.BookValidationException;
 import com.exadel.bookService.model.Book;
 import com.exadel.bookService.repository.BookRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 @Component
 public class BookValidator {
@@ -15,11 +16,11 @@ public class BookValidator {
     }
 
     public void validate(Book book) {
-        if (book.getTitle() == null || book.getTitle().isBlank()) {
+        if (!StringUtils.hasText(book.getTitle())) {
             throw new BookValidationException("Title is required");
         }
 
-        if (book.getIsbn() == null || book.getIsbn().isBlank()) {
+        if (!StringUtils.hasText(book.getIsbn())) {
             throw new BookValidationException("ISBN is required");
         }
 
@@ -28,15 +29,23 @@ public class BookValidator {
         }
     }
 
-    public void validateForUpdate(Book book) {
-        if (book.getTitle() != null && book.getTitle().isBlank()) {
+    public void validateForUpdate(Book updates, Book existing) {
+
+        if (updates.getTitle() != null && !StringUtils.hasText(updates.getTitle())) {
             throw new BookValidationException("Title cannot be blank");
         }
-        if (book.getIsbn() != null && book.getIsbn().isBlank()) {
-            throw new BookValidationException("ISBN cannot be blank");
+
+        // ISBN
+        if (updates.getIsbn() != null) {
+            if (!StringUtils.hasText(updates.getIsbn())) {
+                throw new BookValidationException("ISBN cannot be blank");
+            }
+
+            if (!updates.getIsbn().equals(existing.getIsbn())
+                    && repository.existsByIsbn(updates.getIsbn())) {
+
+                throw new BookValidationException("ISBN already exists");
+            }
         }
     }
-
-
-
 }

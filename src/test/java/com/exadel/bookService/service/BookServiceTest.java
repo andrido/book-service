@@ -174,7 +174,7 @@ public class BookServiceTest {
 
         Book updates = new Book();
         updates.setTitle("New Title");
-        updates.setIsbn("123"); // mesmo ISBN para não gerar exceção
+        updates.setIsbn("123");
 
         when(bookRepository.findById(1L)).thenReturn(Optional.of(existing));
         when(bookRepository.save(existing)).thenReturn(existing);
@@ -182,9 +182,13 @@ public class BookServiceTest {
         Book result = bookService.updateBook(1L, updates);
 
         assertEquals("New Title", result.getTitle());
-        verify(validator, times(1)).validateForUpdate(updates);
+
+
+        verify(validator, times(1)).validateForUpdate(updates, existing);
+
         verify(bookRepository, times(1)).save(existing);
     }
+
 
     @Test
     @DisplayName("updateBook: non-existing book should throw exception")
