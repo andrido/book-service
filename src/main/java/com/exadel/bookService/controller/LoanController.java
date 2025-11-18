@@ -6,6 +6,7 @@ import com.exadel.bookService.model.Loan;
 import com.exadel.bookService.service.ILoanService;
 import com.exadel.bookService.service.LoanService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +15,12 @@ import java.util.List;
 @RestController
 @Validated
 @RequestMapping("/loans")
-
+@RequiredArgsConstructor
 public class LoanController {
 
     private final ILoanService loanService;
 
-    public LoanController(ILoanService loanService) {
-        this.loanService = loanService;
- }
+
 
 
     @PostMapping

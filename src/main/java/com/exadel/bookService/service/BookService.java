@@ -1,9 +1,15 @@
 package com.exadel.bookService.service;
 
+import com.exadel.bookService.model.Reservation;
+import org.springframework.util.StringUtils;
+import com.exadel.bookService.client.UserClient;
+import com.exadel.bookService.dto.BookEvent;
+import com.exadel.bookService.dto.BookStatus;
 import com.exadel.bookService.exception.BookNotFoundException;
-import com.exadel.bookService.exception.BookValidationException;
+import com.exadel.bookService.kafka.BookEventProducer;
 import com.exadel.bookService.model.Book;
 import com.exadel.bookService.repository.BookRepository;
+import com.exadel.bookService.repository.ReservationRepository;
 import com.exadel.bookService.validation.BookValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +21,20 @@ public class BookService implements IBookService {
 
     private final BookRepository repository;
     private final BookValidator validator;
+    private final BookEventProducer bookEventProducer;
+    private final ReservationRepository reservationRepository;
+    private final UserClient userClient;
 
-    public BookService(BookRepository repository, BookValidator validator) {
+    public BookService(BookRepository repository,
+                       BookValidator validator,
+                       BookEventProducer bookEventProducer,
+                       ReservationRepository reservationRepository,
+                       UserClient userClient) {
         this.repository = repository;
         this.validator = validator;
+        this.bookEventProducer = bookEventProducer;
+        this.reservationRepository = reservationRepository;
+        this.userClient = userClient;
     }
 
     @Override
@@ -35,7 +51,6 @@ public class BookService implements IBookService {
                 .orElseThrow(() -> new BookNotFoundException("Book with id " + id + " not found"));
     }
 
-
     @Override
     public Book createBook(Book book) {
         validator.validate(book);
@@ -51,24 +66,47 @@ public class BookService implements IBookService {
         Book existing = repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException("Book not found"));
 
-        // Valida apenas os dados que vieram na requisição
-        validator.validateForUpdate(updates);
+        validator.validateForUpdate(updates, existing);
 
-        // Verifica o ISBN no banco, se foi enviado e não é o mesmo do existente
-        if (updates.getIsbn() != null && !updates.getIsbn().equals(existing.getIsbn())) {
-            if (repository.existsByIsbn(updates.getIsbn())) {
-                throw new BookValidationException("ISBN already exists");
-            }
-            existing.setIsbn(updates.getIsbn());
-        }
-
-        // Atualiza outros campos se vierem
-        if (updates.getTitle() != null) existing.setTitle(updates.getTitle());
-        if (updates.getAuthor() != null) existing.setAuthor(updates.getAuthor());
-        if (updates.getQuantity() != null) existing.setQuantity(updates.getQuantity());
-        existing.setAvailable(updates.isAvailable());
+        applyUpdates(existing, updates);
 
         return repository.save(existing);
+    }
+
+    private void applyUpdates(Book existing, Book updates) {
+        updateTitle(existing, updates);
+        updateAuthor(existing, updates);
+        updateIsbn(existing, updates);
+        updateQuantity(existing, updates);
+        updateAvailability(existing, updates);
+    }
+
+    private void updateTitle(Book existing, Book updates) {
+        if (StringUtils.hasText(updates.getTitle())) {
+            existing.setTitle(updates.getTitle());
+        }
+    }
+
+    private void updateAuthor(Book existing, Book updates) {
+        if (StringUtils.hasText(updates.getAuthor())) {
+            existing.setAuthor(updates.getAuthor());
+        }
+    }
+
+    private void updateIsbn(Book existing, Book updates) {
+        if (updates.getIsbn() != null && !updates.getIsbn().equals(existing.getIsbn())) {
+            existing.setIsbn(updates.getIsbn());
+        }
+    }
+
+    private void updateQuantity(Book existing, Book updates) {
+        if (updates.getQuantity() != null) {
+            existing.setQuantity(updates.getQuantity());
+        }
+    }
+
+    private void updateAvailability(Book existing, Book updates) {
+        existing.setAvailable(updates.isAvailable());
     }
 
     @Override
@@ -94,17 +132,50 @@ public class BookService implements IBookService {
         return 1;
     }
 
-    @Transactional
-    @Override
     public void incrementQuantity(Long bookId) {
         Book book = repository.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException("Book not found"));
 
+        boolean wasUnavailable = book.getQuantity() == 0;
+
         book.setQuantity(book.getQuantity() + 1);
         book.setAvailable(true);
-
         repository.save(book);
+
+
+        if (wasUnavailable) {
+            processReservationsFor(book);
+        }
     }
 
+    private void processReservationsFor(Book book) {
+        var reservations = reservationRepository.findByBookId(book.getId());
 
+
+        reservations.forEach(r -> {
+
+            if (!r.isFulfilled()) {
+                notifyUserAndFulfillReservation(book, r);
+            }
+        });
+    }
+    private void notifyUserAndFulfillReservation(Book book, Reservation r) {
+
+            var userResponse = userClient.getUserById(r.getUserId());
+
+            BookEvent event = new BookEvent(
+                    book.getId(),
+                    book.getTitle(),
+                    BookStatus.AVAILABLE,
+                    r.getUserId(),
+                    userResponse.getFirstName(),
+                    userResponse.getEmail()
+            );
+
+            bookEventProducer.sendBookEvent(event);
+
+            r.setFulfilled(true);
+            reservationRepository.save(r);
+
+    }
 }

@@ -1,8 +1,10 @@
 package com.exadel.bookService.service;
 
+import com.exadel.bookService.dto.LoanEvent;
 import com.exadel.bookService.dto.LoanRequest;
 import com.exadel.bookService.exception.BookNotFoundException;
 import com.exadel.bookService.exception.LoanNotFoundException;
+import com.exadel.bookService.kafka.LoanEventProducer;
 import com.exadel.bookService.model.Book;
 import com.exadel.bookService.model.Loan;
 import com.exadel.bookService.model.LoanStatus;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +31,16 @@ class LoanServiceTest {
     @Mock
     private BookService bookService;
 
+    @Mock
+    private LoanEventProducer loanEventProducer;
+
+    @Mock
+    private KafkaTemplate<String, LoanEvent> kafkaTemplate;
+
     @InjectMocks
     private LoanService loanService;
+
+;
 
     @BeforeEach
     void setUp() {

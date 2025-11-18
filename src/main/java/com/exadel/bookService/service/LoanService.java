@@ -1,12 +1,14 @@
 package com.exadel.bookService.service;
 
 import com.exadel.bookService.dto.LoanRequest;
+import com.exadel.bookService.dto.LoanEvent;
 import com.exadel.bookService.exception.BookNotFoundException;
 import com.exadel.bookService.exception.LoanNotFoundException;
-import com.exadel.bookService.model.Book;
+import com.exadel.bookService.kafka.LoanEventProducer;
 import com.exadel.bookService.model.Loan;
 import com.exadel.bookService.model.LoanStatus;
 import com.exadel.bookService.repository.LoanRepository;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +19,16 @@ import java.util.List;
 public class LoanService implements ILoanService {
 
     private final LoanRepository loanRepository;
-    private final IBookService bookService; // injeta a interface de BookService
+    private final IBookService bookService;
+    private final KafkaTemplate<String, LoanEvent> kafkaTemplate; // 🔄 agora usa o DTO
+    private final LoanEventProducer loanEventProducer;
 
-    public LoanService(LoanRepository loanRepository, IBookService bookService) {
+    public LoanService(LoanRepository loanRepository, IBookService bookService,
+                       KafkaTemplate<String, LoanEvent> kafkaTemplate, LoanEventProducer loanEventProducer) {
         this.loanRepository = loanRepository;
         this.bookService = bookService;
+        this.kafkaTemplate = kafkaTemplate;
+        this.loanEventProducer = loanEventProducer;
     }
 
     @Transactional
@@ -39,29 +46,55 @@ public class LoanService implements ILoanService {
         Loan loan = new Loan();
         loan.setBook(book);
         loan.setUserId(userId);
-        loan.setBorrowedAt(java.time.LocalDateTime.now());
-        loan.setDueAt(java.time.LocalDateTime.now().plusDays(14));
-        loan.setStatus(com.exadel.bookService.model.LoanStatus.BORROWED);
+        loan.setBorrowedAt(LocalDateTime.now());
+        loan.setDueAt(LocalDateTime.now().plusDays(14));
+        loan.setStatus(LoanStatus.BORROWED);
 
-        return loanRepository.save(loan);
+        Loan savedLoan = loanRepository.save(loan);
+
+        // 📤 Publica o evento no Kafka com o DTO
+        LoanEvent event = new LoanEvent(
+                savedLoan.getId(),
+                userId,
+                bookId,
+                book.getTitle(),
+                savedLoan.getStatus().name()
+        );
+
+        kafkaTemplate.send("loan-events", event);
+
+        return savedLoan;
     }
 
     @Transactional
     @Override
     public Loan returnBook(Long loanId) {
         Loan loan = loanRepository.findById(loanId)
-                .orElseThrow(() -> new com.exadel.bookService.exception.LoanNotFoundException("Loan not found"));
+                .orElseThrow(() -> new LoanNotFoundException("Loan not found"));
 
-        if (loan.getStatus() != com.exadel.bookService.model.LoanStatus.BORROWED) {
+        if (loan.getStatus() != LoanStatus.BORROWED) {
             throw new IllegalStateException("Loan is not active");
         }
 
-        loan.setReturnedAt(java.time.LocalDateTime.now());
-        loan.setStatus(com.exadel.bookService.model.LoanStatus.RETURNED);
+        loan.setReturnedAt(LocalDateTime.now());
+        loan.setStatus(LoanStatus.RETURNED);
 
         bookService.incrementQuantity(loan.getBook().getId());
 
-        return loanRepository.save(loan);
+        Loan savedLoan = loanRepository.save(loan);
+
+
+        LoanEvent event = new LoanEvent(
+                savedLoan.getId(),
+                savedLoan.getUserId(),
+                savedLoan.getBook().getId(),
+                savedLoan.getBook().getTitle(),
+                savedLoan.getStatus().name()
+        );
+
+        loanEventProducer.sendLoanEvent(event);
+
+        return savedLoan;
     }
 
     @Override
@@ -71,6 +104,6 @@ public class LoanService implements ILoanService {
 
     @Override
     public List<Loan> getActiveLoansByUser(Long userId) {
-        return loanRepository.findByUserIdAndStatus(userId, com.exadel.bookService.model.LoanStatus.BORROWED);
+        return loanRepository.findByUserIdAndStatus(userId, LoanStatus.BORROWED);
     }
 }

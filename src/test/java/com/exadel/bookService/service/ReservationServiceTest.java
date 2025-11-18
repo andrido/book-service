@@ -5,6 +5,7 @@ import com.exadel.bookService.exception.ReservationNotAllowedException;
 import com.exadel.bookService.model.Book;
 import com.exadel.bookService.model.Reservation;
 import com.exadel.bookService.repository.ReservationRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,9 +29,16 @@ class ReservationServiceTest {
     @InjectMocks
     private ReservationService reservationService;
 
+    private AutoCloseable mocks;
+
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        mocks = MockitoAnnotations.openMocks(this); // <- inicializa os mocks
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        mocks.close(); // <- fecha os mocks
     }
 
     @Test
@@ -99,4 +107,9 @@ class ReservationServiceTest {
         assertTrue(reservation.isFulfilled());
         verify(reservationRepository).save(reservation);
     }
+
+
+
 }
+
+

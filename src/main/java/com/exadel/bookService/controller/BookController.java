@@ -4,6 +4,7 @@ import com.exadel.bookService.exception.BookNotFoundException;
 import com.exadel.bookService.model.Book;
 import com.exadel.bookService.service.BookService;
 import com.exadel.bookService.service.IBookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,14 +12,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@RequiredArgsConstructor
 public class BookController {
 
     private final IBookService service;
 
-    @Autowired
-    public BookController(IBookService service) {
-        this.service = service;
-    }
+
 
     @GetMapping
     public List<Book> getAllBooks() {
